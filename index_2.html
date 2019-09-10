@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>MIDI javascript player</title>
+        
+        <script src="browser/midiplayer.min.js"></script>
+        <script src="demo/js/soundfont-player.min.js"></script>
+        <script src="demo/js/app.js"></script>
+        
+    </head>
+
+    <body>
+
+            <h4>Choose a Midi File</h4>
+
+            <p id="select-file">
+                <input type="file" onchange="loadFile()" onclick="Player.stop()" />
+            </p>
+    
+            <p id="loading">Loading soundfont...</p>
+    
+            <div style="border:1px solid #ccc;margin-bottom:12px;background:#f7f7f7;">
+                <div id="play-bar" style="height:20px;background:#33C3F0;width:0%;"></div>
+            </div>
+    
+            <p>
+                <button class="button button-primary" id="play-button" onclick="Player.isPlaying() ? pause() : play();" disabled="disabled">Play</button>
+                <button class="button" onclick="stop()">Stop</button>
+            </p>
+        
+            <p>
+                Tempo: <span id="tempo-display"></span> bpm<br />
+                <input type="range" onchange="Player.pause();Player.setTempo(this.value);Player.play()" min="50" max="200">
+                <br />
+            </p>
+            
+
+    </body>
+
+</html>
