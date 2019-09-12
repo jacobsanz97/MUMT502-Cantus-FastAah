@@ -2,17 +2,21 @@
 <html>
 
     <head>
+
         <title>MIDI javascript player</title>
-        
-        <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
-  
+
+    <script type='text/javascript' src='https://www.midijs.net/lib/midi.js'></script>	
+    
     </head>
 
+
     <body>
-
-        <a href="#" onClick="MIDIjs.play('midi/bicycle.mid');">Play bicycle.mid</a>
-
-        <a href="#" onClick="MIDIjs.stop();">Stop MIDI Playback</a>
+       
+        <p name="example">
+            <a href="#example" onClick="MIDIjs.play('midi/september.mid');">Play MIDI file</a>
+            <a href="#example" onClick="MIDIjs.stop();">Stop MIDI Playback</a>
+            MIDIjs status: <span id="MIDIjs.message" style="color: green">Initializing ...</span>
+        </p>
 
 
     </body>
