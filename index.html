@@ -1,24 +1,62 @@
 <!DOCTYPE html>
+
 <html>
 
-    <head>
+<head>
+	<title>Javascript MIDI Player</title>
+	<script src='libraries/WebAudioFontPlayer.js'></script>
+    <script src='libraries/MIDIFile.js'></script>
+    <script src='libraries/MIDIPlayer.js'></script>
 
-        <title>MIDI javascript player</title>
+</head>
 
-    <script type='text/javascript' src='https://www.midijs.net/lib/midi.js'></script>	
+<body>
+
+
+
+	<h2>Javascript MIDI Player</h2>
+	<div id='cntls'>
+		<p>
+			<input type="file" id="filesinput" name="filesarr[]" accept=".mid,.midi,.kar"/>
+			<button type="button" onclick="player.play()">Play</button>
+			<button type="button" onclick="player.pause()">Pause</button>
+            <button type="button" onclick="player.stop()">Stop</button>
+            <input id="position" type="range" min="0" max="100" value="0">
+            
+
+            
+		</p>
+	</div>
+	<script>
     
-    </head>
+	    // create the player object using a file input by id or DOM Element
+	    player=new MIDIPlayer('filesinput');
+
+	    // register the onload function to start playing
+	    player.onload = function(song){
+		    player.play();
+		    var pos= document.getElementById("position");
+	    	pos.setAttribute("max",song.duration);
+    	}
+
+	    // the tick event is triggered in every position change
+	    player.ontick=function(song,position){
+	    	var pos= document.getElementById("position");
+	    	pos.value=position;
+	    }
 
 
-    <body>
-       
-        <p name="example">
-            <a href="#example" onClick="MIDIjs.play('midi/september.mid');">Play MIDI file</a>
-            <a href="#example" onClick="MIDIjs.stop();">Stop MIDI Playback</a>
-            MIDIjs status: <span id="MIDIjs.message" style="color: green">Initializing ...</span>
-        </p>
+	//	var AudioContextFunc = window.AudioContext || window.webkitAudioContext;		
+	//	var audioContext = new AudioContextFunc();
+    //    var channelMaster = player.createChannel(audioContext);		
+    //    var reverberator = player.createReverberator(audioContext);
+	//	channelMaster.output.connect(reverberator.input);
+	//	reverberator.output.connect(audioContext.destination);
 
-
-    </body>
+    // probably control the tempo and the reverb inside the libraries js
+    // or at least control them inside the song,position for when the tick is triggered (eg vol)
+    
+	</script>
+</body>
 
 </html>
