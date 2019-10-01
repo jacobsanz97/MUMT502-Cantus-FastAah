@@ -1,23 +1,47 @@
 <!DOCTYPE html>
+
 <html>
 
-    <head>
+<head>
+	<title>Javascript MIDI Player</title>
+	<script src='libraries/WebAudioFontPlayer.js'></script>
+    <script src='libraries/MIDIFile.js'></script>
+    <script src='libraries/MIDIPlayer.js'></script>
 
-        <title>MIDI javascript player</title>
+</head>
 
-    <script type='text/javascript' src='https://www.midijs.net/lib/midi.js'></script>  
+<body>
+
+	<h2>Javascript MIDI Player</h2>
+	<div id='cntls'>
+		<p>
+			<input type="file" id="filesinput" name="filesarr[]" accept=".mid,.midi,.kar"/>
+			<button type="button" onclick="player.play()">Play</button>
+			<button type="button" onclick="player.pause()">Pause</button>
+            <button type="button" onclick="player.stop()">Stop</button>
+            <input id="position" type="range" min="0" max="100" value="0">
+            
+		</p>
+	</div>
+	<script>
     
-    </head>
+	    //create the player object
+	    player=new MIDIPlayer('filesinput');
 
+	    //Onload function to start playing
+	    player.onload = function(song){
+		    player.play();
+		    var pos= document.getElementById("position");
+	    	pos.setAttribute("max",song.duration);
+    	}
 
-    <body>
-       
-        <p name="example">
-            <a href="#example" onClick="MIDIjs.play('midi/september.mid');">Play MIDI file</a>
-            <a href="#example" onClick="MIDIjs.stop();">Stop MIDI Playback</a>
-        </p>
-
-
-    </body>
+	    //Tick event is triggered in every position change
+	    player.ontick=function(song,position){
+	    	var pos= document.getElementById("position");
+	    	pos.value=position;
+	    }
+    
+	</script>
+</body>
 
 </html>

@@ -1,0 +1,25 @@
+19/09/20:
+
+-Learnt some javascript. MIDI player is hosted on github pages.
+
+-Tested soundfonts. Surikov's soundfont seems to be the winner (and has some inbuilt reverb).
+
+-Midijs.net API doesn't have any options. Only play and stop.
+-Read about and tried many players (midijs.net, MidiPlayerJS (has setTempo), rism midi-player, timidity, webaudiofont (has reverb))
+-Only 1 of them has both reverb control and tempo control (Midi.js). Terrible documentation, taking forever...seems to have an error?
+-None of them have pitch control for a playing file.
+
+-Currently using fraigo javascript player w/ surikov soundfont...just because it has some clear documentation.
+
+-------------------------------------
+26/09/20:
+
+-Created a volpiano to midi converter in python.
+
+-Started this journal.
+
+-Trying to find a soundfont library with vowels for monk chant...Not succesful thus far. Could try making own soundfont (each instrument could be monks singing with a different syllable, then do program changes), or loading a VSTI on the website. Neither looks straightforward.
+
+-MENTION NSERC X2
+-------------------------------------
+

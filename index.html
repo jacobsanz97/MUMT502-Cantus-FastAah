@@ -1,47 +1,71 @@
-<!DOCTYPE html>
-
 <html>
+	<head>
+		<script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
+		<script src='https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js'></script>
+		<script>
+			var selectedPreset=_tone_0520_JCLive_sf2_file;
+			var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
+			var audioContext = new AudioContextFunc();
+			var player=new WebAudioFontPlayer();
+			player.loader.decodeAfterLoading(audioContext, '_tone_0520_JCLive_sf2_file');
+		</script>
+		<script>
+			function volpiano2midi(input_str, note_dur) {
 
-<head>
-	<title>Javascript MIDI Player</title>
-	<script src='libraries/WebAudioFontPlayer.js'></script>
-    <script src='libraries/MIDIFile.js'></script>
-    <script src='libraries/MIDIPlayer.js'></script>
+				//construct dictionary with pitch values
+				var pitch_dict = {};
+				pitch_dict['9'] = 55;
+				pitch_dict['a'] = 57;
+				pitch_dict['b'] = 59;
+				pitch_dict['c'] = 60;
+				pitch_dict['d'] = 62;
+				pitch_dict['e'] = 64;
+				pitch_dict['f'] = 65;
+				pitch_dict['g'] = 67;
+				pitch_dict['h'] = 69;
+				pitch_dict['j'] = 71;
+				pitch_dict['k'] = 72;
+				pitch_dict['l'] = 74;
+				pitch_dict['m'] = 76;
+				pitch_dict['n'] = 77;
+				pitch_dict['o'] = 79;
+				pitch_dict['p'] = 81;
+				pitch_dict['q'] = 83;
+				pitch_dict['r'] = 84;
+				pitch_dict['s'] = 86;
 
-</head>
+				//iterate through each character, check if in dictionary, play the corresponding pitch
+				for (var i = 0; i < input_str.length; i++) {
+					if (input_str.charAt(i) in pitch_dict){
+					  	player.queueWaveTable(audioContext, audioContext.destination, selectedPreset, 0, pitch_dict[input_str.charAt(i)], note_dur);
+					  	sleep(note_dur*1000);
+					}
+				}
 
-<body>
 
-	<h2>Javascript MIDI Player</h2>
-	<div id='cntls'>
-		<p>
-			<input type="file" id="filesinput" name="filesarr[]" accept=".mid,.midi,.kar"/>
-			<button type="button" onclick="player.play()">Play</button>
-			<button type="button" onclick="player.pause()">Pause</button>
-            <button type="button" onclick="player.stop()">Stop</button>
-            <input id="position" type="range" min="0" max="100" value="0">
-            
-		</p>
-	</div>
-	<script>
-    
-	    //create the player object
-	    player=new MIDIPlayer('filesinput');
+			}
+		</script>
 
-	    //Onload function to start playing
-	    player.onload = function(song){
-		    player.play();
-		    var pos= document.getElementById("position");
-	    	pos.setAttribute("max",song.duration);
-    	}
+		<script>	
+			//To delay the sequencer loop
+			function sleep(milliseconds) {
+  				var start = new Date().getTime();
+  				for (var i = 0; i < 1e7; i++) {
+    				if ((new Date().getTime() - start) > milliseconds){
+    				  break;
+    				}
+  				}
+			}
+		</script>
 
-	    //Tick event is triggered in every position change
-	    player.ontick=function(song,position){
-	    	var pos= document.getElementById("position");
-	    	pos.value=position;
-	    }
-    
-	</script>
-</body>
+	</head>
 
+	<body>
+
+		<p>Volpiano snippet: <input type="text" id="myText" value="Paste Volpiano here..."></p>
+		<p>Tempo: <input type="range" min="20" max="160" value="90" class="slider" id="myRange"></p>
+		<button onclick="volpiano2midi(document.getElementById('myText').value, 60.0/document.getElementById('myRange').value);">Play</button>
+
+	</body>
+	
 </html>
