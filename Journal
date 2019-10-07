@@ -10,7 +10,6 @@
 -None of them have pitch control for a playing file.
 
 -Currently using fraigo javascript player w/ surikov soundfont...just because it has some clear documentation.
-
 -------------------------------------
 26/09/20:
 
@@ -19,7 +18,14 @@
 -Started this journal.
 
 -Trying to find a soundfont library with vowels for monk chant...Not succesful thus far. Could try making own soundfont (each instrument could be monks singing with a different syllable, then do program changes), or loading a VSTI on the website. Neither looks straightforward.
+-------------------------------------
+04/10/20:
 
--MENTION NSERC X2
+-Ported volpiano2midi to js, using surikov webaudiofont.
+-Just need to paste in volpiano, no need for intermediate midi files.
+-Added tempo.
+-Used "Aaaah" soundfont.
 -------------------------------------
 
+-Can I put mumt502 as work experience on canadian common cv
+-On canadian common cv, how to put scholarship? 
