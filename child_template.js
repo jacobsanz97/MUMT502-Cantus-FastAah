@@ -9,7 +9,10 @@ function include(file) {
 function volpiano2midi(input_str, note_dur) {
 
 	include('https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'); 
-	include('https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js');  
+	include('https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js');
+
+	var elem = document.getElementById('play')
+
 	var selectedPreset=_tone_0520_JCLive_sf2_file;
 	var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
 	var audioContext = new AudioContextFunc();
@@ -41,7 +44,9 @@ function volpiano2midi(input_str, note_dur) {
 	//iterate through each character, check if in dictionary, play the corresponding pitch
 	for (var i = 0; i < input_str.length; i++) {
 		if (input_str.charAt(i) in pitch_dict){
-		  	player.queueWaveTable(audioContext, audioContext.destination, selectedPreset, 0, pitch_dict[input_str.charAt(i)], note_dur);
+			play.addEventListener('click', function() {
+		  		player.queueWaveTable(audioContext, audioContext.destination, selectedPreset, 0, pitch_dict[input_str.charAt(i)], note_dur);
+			}, false);
 		  	sleep(note_dur*1000);
 		}
 	}
