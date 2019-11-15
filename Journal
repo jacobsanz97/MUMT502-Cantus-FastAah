@@ -1,4 +1,4 @@
-19/09/20:
+19/09/19:
 
 -Learnt some javascript. MIDI player is hosted on github pages.
 
@@ -11,7 +11,7 @@
 
 -Currently using fraigo javascript player w/ surikov soundfont...just because it has some clear documentation.
 -------------------------------------
-26/09/20:
+26/09/19:
 
 -Created a volpiano to midi converter in python.
 
@@ -19,13 +19,33 @@
 
 -Trying to find a soundfont library with vowels for monk chant...Not succesful thus far. Could try making own soundfont (each instrument could be monks singing with a different syllable, then do program changes), or loading a VSTI on the website. Neither looks straightforward.
 -------------------------------------
-04/10/20:
+04/10/19:
 
 -Ported volpiano2midi to js, using surikov webaudiofont.
 -Just need to paste in volpiano, no need for intermediate midi files.
 -Added tempo.
 -Used "Aaaah" soundfont.
 -------------------------------------
+11/10/19:
 
--Can I put mumt502 as work experience on canadian common cv
--On canadian common cv, how to put scholarship? 
+-Lowered volpiano2midi by an octave.
+-Setting up cantus environent
+-------------------------------------
+25/10/20
+
+-Found excellent soundfont
+-Web players only deal with pre-rendered soundfonts. Need to somehow convert my soundfont to this format.
+
+-------------------------------------
+06/10/20
+
+-learned how to interact with DOM, and how Django works.
+-minor setback: accidentally deleted static data, have to set up cantus environment again.
+-------------------------------------
+-14/10/20
+-Setback: template won't update (probably gunicorn)
+-Otherwise, written all functions needed to 'plug and play' template when we can solve the issue.
+-Found a soundfont synthesiaer in javascript on github, works well. Figuring how to load our soundfont onto it.
+-------------------------------------
+
+

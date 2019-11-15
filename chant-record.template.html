@@ -1,0 +1,51 @@
+<% if (cantus_id) { %>
+<p><b>Cantus ID:</b> <%= cantus_id %></p>
+<% } %>
+<head>
+	<script type="text/javascript" src="child_template.js"></script>
+	<script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
+	<script src='https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js'></script>
+	<script>
+		var selectedPreset=_tone_0520_JCLive_sf2_file;
+		var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
+		var audioContext = new AudioContextFunc();
+		var player=new WebAudioFontPlayer();
+		player.loader.decodeAfterLoading(audioContext, '_tone_0520_JCLive_sf2_file');
+	</script>
+</head>
+
+<% if (marginalia) { %>
+<p><b>Marginalia:</b> <%= marginalia %></p>
+<% } %>
+<% if (sequence) { %>
+<p><b>Sequence: </b> <%= sequence %></p>
+<% } %>
+<% if (feast) { %>
+<p><b>Feast: </b> <%= feast %></p>
+<% } %>
+<% if (office) { %>
+<p><b>Office: </b> <%= office %></p>
+<% } %>
+<% if (genre) { %>
+<p><b>Genre: </b> <%= genre %></p>
+<% } %>
+<% if (mode) { %>
+<p><b>Mode: </b> <%= mode %></p>
+<% } %>
+<% if (differentia) { %>
+<p><b>Differentia: </b> <%= differentia.replace('w', 'ω') %></p>
+<% } %>
+<% if (finalis) { %>
+<p><b>Finalis: </b> <%= finalis %></p>
+<% } %>
+<hr/>
+<h5>Full Text</h5>
+<%= full_text %>
+<% if (volpiano) { %>
+<hr/>
+<div class="volpiano"><%= volpiano %></div>
+<% } %>
+<hr/>
+
+<p>Tempo: <input type="range" min="20" max="160" value="90" class="slider" id="myRange"></p>
+<button onclick="main()">Play</button>
