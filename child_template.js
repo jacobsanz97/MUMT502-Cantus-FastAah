@@ -1,8 +1,19 @@
+include('https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'); 
+include('https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js');  
+
 var selectedPreset=_tone_0520_JCLive_sf2_file;
 var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContextFunc();
 var player=new WebAudioFontPlayer();
 player.loader.decodeAfterLoading(audioContext, '_tone_0520_JCLive_sf2_file');
+
+function include(file) { 
+  var script  = document.createElement('script'); 
+  script.src  = file; 
+  script.type = 'text/javascript'; 
+  script.defer = true; 
+  document.getElementsByTagName('head').item(0).appendChild(script);   
+} 
 
 function volpiano2midi(input_str, note_dur) {
 	//construct dictionary with pitch values
