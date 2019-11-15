@@ -1,12 +1,3 @@
-include('https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'); 
-include('https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js');  
-
-var selectedPreset=_tone_0520_JCLive_sf2_file;
-var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
-var audioContext = new AudioContextFunc();
-var player=new WebAudioFontPlayer();
-player.loader.decodeAfterLoading(audioContext, '_tone_0520_JCLive_sf2_file');
-
 function include(file) { 
   var script  = document.createElement('script'); 
   script.src  = file; 
@@ -16,6 +7,15 @@ function include(file) {
 } 
 
 function volpiano2midi(input_str, note_dur) {
+
+	include('https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'); 
+	include('https://surikov.github.io/webaudiofontdata/sound/0520_JCLive_sf2_file.js');  
+	var selectedPreset=_tone_0520_JCLive_sf2_file;
+	var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
+	var audioContext = new AudioContextFunc();
+	var player=new WebAudioFontPlayer();
+	player.loader.decodeAfterLoading(audioContext, '_tone_0520_JCLive_sf2_file');
+
 	//construct dictionary with pitch values
 	var pitch_dict = {};
 	pitch_dict['9'] = 43;
