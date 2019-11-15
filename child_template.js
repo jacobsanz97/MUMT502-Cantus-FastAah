@@ -1,3 +1,9 @@
+var selectedPreset=_tone_0520_JCLive_sf2_file;
+var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
+var audioContext = new AudioContextFunc();
+var player=new WebAudioFontPlayer();
+player.loader.decodeAfterLoading(audioContext, '_tone_0520_JCLive_sf2_file');
+
 function volpiano2midi(input_str, note_dur) {
 	//construct dictionary with pitch values
 	var pitch_dict = {};
